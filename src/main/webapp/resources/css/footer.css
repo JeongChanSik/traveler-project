@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+.footer-container ul{
+	list-style:none;
+	margin:20px;
+	padding:5px;
+	text-align:center;
+}
+					 
+.footer-container ul li{
+	display:inline;
+	padding:15px;
+}
+						
+.footer-container ul li a{
+	color:gray;
+	font-size:13px;
+	float:none;
+}
+
+.sns-icon{position:relative;
+	   	   margin:0px;	
+}
+
+.blog1{position:absolute;
+	   display:none;
+}
+
+ .sns-icon:hover .blog1{
+ 	display:inline;
+}					
+  
+.facebook1{
+	position:absolute;
+	display:none;
+}
+
+.sns-icon:hover .facebook1{
+	display:inline;
+}
+
+.twitter1{
+	position:absolute;
+	display:none;
+}
+
+.sns-icon:hover .twitter1{
+	display:inline;
+}				
+
+.kakaostory1{
+	position:absolute;
+	display:none;
+}
+
+.sns-icon:hover .kakaostory1{
+	display:inline;
+}									
+
+.instagram1{
+	position:absolute;
+	display:none;
+}
+
+.sns-icon:hover .instagram1{
+	display:inline;
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="l">
+	
+	<!-- 좋아요 +1 -->
+	<insert id="like_insert" parameterType="likeit">
+		insert into likeit values(
+								  seq_likeit_idx.nextval,
+								  #{member_idx},
+								  #{review_idx},
+								  1
+								  )
+	</insert>
+	<update id="likecheck_up" parameterType="review">
+		update review set likecheck=likecheck+1 where review_idx=#{review_idx}
+	</update>
+	
+	
+	<!-- 좋아요 -1 -->
+	<delete id="like_delete" parameterType="likeit">
+		delete from likeit where member_idx=#{member_idx} and review_idx=#{review_idx}
+	</delete>
+	<update id="likecheck_down" parameterType="review">
+		update review set likecheck=likecheck-1 where review_idx=#{review_idx}
+	</update>
+	
+	<!-- 좋아요 여부 체크 -->
+	<select id="like_count" resultType="likeit" parameterType="likeit">
+		select * from likeit where member_idx=#{member_idx} and review_idx=#{review_idx}
+	</select>
+	
+	<!-- 게시물 +/- 좋아요 개수 --> 
+	<select id="review_like" resultType="review" parameterType="review">
+		select likecheck from review where review_idx=#{review_idx}
+	</select>
+	
+	<!-- 좋아요 게시물 테이블 -->
+	<select id="likeit_list" resultType="review" parameterType="java.util.Map">
+		SELECT * FROM 
+		(SELECT RANK() OVER(ORDER BY REVIEW_IDX DESC) no, r.* FROM REVIEW r WHERE r.REVIEW_IDX IN (SELECT review_idx FROM LIKEIT WHERE member_idx = #{member_idx})) 
+		WHERE no BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 좋아요 게시물 수 조회 -->
+	<select id="likeReview_count" resultType="int" parameterType="int">
+		select count(*) from likeit where member_idx=#{member_idx}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

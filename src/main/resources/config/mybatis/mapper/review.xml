@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+	<!-- 리뷰 전체 리스트 조회 -->
+	<select id="review_all_list" resultType="review" parameterType="review">
+		SELECT * FROM (SELECT RANK() OVER(ORDER BY review_idx DESC) no, r.* FROM review r)
+		WHERE NO BETWEEN #{page_start} AND #{page_end}
+	</select>
+	
+	<!-- 리뷰 전체 게시물 수 조회 -->
+	<select id="review_count" resultType="int">
+		SELECT COUNT(*) FROM review
+	</select>
+	
+	<!-- 리뷰 특정 지역 게시물 수 조회 -->
+	<select id="review_region_count" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM review WHERE region = #{region}
+	</select>
+
+	<!-- 리뷰 특정 지역 체크 -->
+	<select id="review_list_check" parameterType="String" resultType="review">
+		SELECT * FROM review WHERE region = #{region}
+	</select>
+
+	<!-- 리뷰 특정 지역 리스트 조회 -->
+	<select id="review_list" parameterType="review" resultType="review">
+		SELECT * FROM (SELECT RANK() OVER(ORDER BY review_idx DESC) no, r.* FROM review r)
+		WHERE region = #{region} AND NO BETWEEN #{page_start} AND #{page_end}
+	</select>
+	
+	<!-- 리뷰 등록 -->
+	<insert id="review_insert" parameterType="review">
+		INSERT INTO review VALUES(
+			seq_review_idx.nextVal,
+			#{id},
+			#{subject},
+			#{content},
+			#{region},
+			SYSDATE,
+			#{filename1},
+			#{filename2},
+			#{filename3},
+			#{filename4},
+			#{filename5},
+			0
+		)
+	</insert>
+	
+	<!-- 리뷰 상세보기 -->
+	<select id="review_view" resultType="review" parameterType="int">
+		SELECT * FROM review WHERE review_idx = #{review_idx}
+	</select>
+	
+	<!-- 리뷰 수정하기 -->
+	<update id="review_modify" parameterType="review">
+		UPDATE review 
+		SET subject = #{subject}, content = #{content}, region = #{region}, filename1 = #{filename1}, filename2 = #{filename2}, filename3 = #{filename3}, filename4 = #{filename4}, filename5 = #{filename5}
+		WHERE review_idx = #{review_idx}
+	</update>
+	
+	<!-- 리뷰 삭제하기 -->
+	<delete id="review_delete" parameterType="int">
+		DELETE FROM review WHERE review_idx = #{review_idx}
+	</delete>
+	
+	<!-- 리뷰 댓글 리스트 -->
+	<select id="review_comment_list" parameterType="int" resultType="vo.ReviewCommentVO">
+		<!-- SELECT rc.* 
+		FROM REVIEW r, REVIEW_COMMENT rc
+		WHERE r.REVIEW_IDX = rc.#{review_idx}
+		ORDER BY rc.review_comment_idx DESC -->
+		SELECT *
+		FROM review_comment
+		WHERE review_idx = (SELECT review_idx FROM review WHERE review_idx = #{review_idx})
+		ORDER BY review_comment_idx DESC
+	</select>
+	
+	<!-- 리뷰에 댓글 작성하기 -->
+	<insert id="review_comment_insert" parameterType="vo.ReviewCommentVO">
+		INSERT INTO review_comment VALUES(
+			seq_review_comment_idx.nextVal,
+			#{review_idx},
+			#{id},
+			#{review_comment},
+			SYSDATE,
+			0
+		)
+	</insert>
+	
+	<!-- 리뷰에 댓글 삭제하기 -->
+	<delete id="review_comment_delete" parameterType="int">
+		DELETE FROM review_comment
+		WHERE review_comment_idx = #{review_comment_idx}
+	</delete>
+	
+	<!-- 지역페이지 지역별 정보 가져오기 -->
+	<select id="select_area_info" parameterType="String" resultType="vo.AreaVO">
+		select * from area where a_region = #{a_region}
+	</select>
+	
+	<!-- 지역페이지 지역별 맛집 가져오기 -->
+	<select id="select_must_eat_info" parameterType="String" resultType="vo.MustEatVO">
+		select * from must_eat where m_region = #{m_region}
+	</select>
+	
+	<select id="select_region_tourism_info" parameterType="String" resultType="vo.RegionTourismHomeVO">
+		select * from region_tourism_home where	t_region = #{t_region}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	width: 900px;
+	margin: 0 auto;
+	padding: 20px 0;
+	border: 1px solid #D3D3D3;
+}
+
+.caption_text {
+	text-align: center;
+	padding: 20px 30px;
+	margin: 40px auto 30px;
+	width: 840px;
+	border-bottom: 3px solid black;
+}
+
+.caption_text h2 {
+	font-size: 1.9em;
+}
+
+table {
+	border-collapse: collapse;
+	/* border: 1px solid black; */
+	margin: 0 auto;
+	width: 800px;
+}
+
+.subject_input_box {
+	font-size: 30px;
+	padding: 20px 20px;
+	margin-bottom: 20px;
+	width: 800px;
+	height: 80px;
+	border-bottom: 1px solid #D3D3D3;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	outline: none;
+}
+
+.subject_input_box::placeholder {
+	color: #D3D3D3;
+}
+
+.content_input_box {
+	font-size: 17px;
+	padding: 20px 20px;
+	width: 800px;
+	height: 600px;
+	border: none;
+	outline: none;
+}
+
+.content_input_box::placeholder {
+	font-weight: bold;
+	color: #D3D3D3;
+}
+
+input[type=file] {
+	width: 180px;
+	margin-bottom: 10px;
+}
+
+select {
+	width: 300px;
+	height: 30px;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 20px;
+	margin-left: 50px;
+}
+
+.button_box {
+	width: 900px;
+	height: 40px;
+	margin: 20 auto;
+	position: relative;
+}
+
+.button_box input {
+	border: none;
+	border-top-left-radius: 35px;
+	border-top-right-radius: 35px;
+	border-bottom-left-radius: 35px;
+	border-bottom-right-radius: 35px;
+	width: 120px;
+	height: 40px;
+	position: absolute;
+	right: 0;
+}
+
+.button_box input:first-child {
+	margin-right: 130px;
+}
+
+.button_box input:hover {
+	background-color: #A9A9A9;
+	transition: 0.4s;
+}
+
+.button_box input:active {
+	background-color: #696969;
+}

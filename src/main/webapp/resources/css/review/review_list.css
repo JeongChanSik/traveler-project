@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+ul, li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+#contents {
+	margin: auto;
+	/* border: 1px solid black; */
+	width: 880px;
+}
+
+.regionAndTotal_box {
+	border-bottom: 1px solid #e6e6e6;
+	position: relative;
+	padding: 20px 0;
+}
+
+#region_text {
+	font-size: 2.2em;
+}
+
+#region_box {
+	padding-bottom: 15px;
+	border-bottom: 1px solid #767676;
+	width: 880px;
+	height: 105px;
+}
+
+#region_box li {
+	float: left;
+}
+
+#region_box ul input[type=button] {
+	padding: 15px 20px;
+	border: none;
+	border-top-left-radius: 35px;
+	border-top-right-radius: 35px;
+	border-bottom-left-radius: 35px;
+	border-bottom-right-radius: 35px;
+	margin-right: 15px;
+	margin-bottom: 12px;
+}
+
+#region_box ul input[type=button]:hover {
+	background-color: #A9A9A9;
+	transition: 0.4s;
+}
+
+#region_box ul input[type=button]:active {
+	background-color: #696969;
+}
+
+table {
+	border: none;
+	border-collapse: collapse;
+	align: center;
+}
+
+table tr td:first-child {
+	padding-left: 0;
+}
+
+table tr td {
+	padding: 40px 0;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+table tr td:nth-child(2) {
+	padding-left: 50px;
+	padding-right: 140px;
+	width: 500px;
+}
+
+table img {
+	width: 280px;
+	height: 160px;
+}
+
+table a {
+	font-size: 25px;
+}
+
+table a:hover {
+	text-decoration: underline;
+}
+
+.review_region_text, .review_id_text {
+	color: #808080;
+}
+
+.paging_box {
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.paging_box b {
+	background-color: #13294b;
+	border: 1px solid #13294b;
+	color: #fff;
+	width: 33px;
+	height: 33px;
+	display: inline-block;
+	font-size: 17px;
+	line-height: 33px;
+	text-align: center;
+}
+
+.paging_box a {
+	border: 1px solid #ccc;
+	width: 33px;
+	height: 33px;
+	display: inline-block;
+	font-size: 17px;
+	line-height: 33px;
+	text-align: center;
+}
+
+.button_box {
+	width: 880px;
+	height: 69px;
+}
+
+.button_box input[type=button] {
+	margin-top: 15px;
+	width: 110px;
+	height: 40px;
+	float: right;
+	border-radius: 35px;
+	border: none;
+}
+
+.button_box input[type=button]:hover {
+	background-color: #A9A9A9;
+	transition: 0.4s;
+}
+
+.button_box input[type=button]:active {
+	background-color: #696969;
+}

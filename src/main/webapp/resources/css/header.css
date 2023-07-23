@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+.header-container{
+	width:100%;
+	height: 100px;
+	margin: 0;
+	position: relative;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 반응형 만들기 */
+/* @media (max-width: 640px) {
+	#logo. a{
+	visible: hidden;
+	}
+	
+	
+} */
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+/* 컴퓨터 사이즈 */
+#logo{
+	display: flex;
+	height: 40px; 
+	position: absolute;
+	top: 30px;
+	left: 50px;
+	width: 300px;
+	font-weight: 300;
+	text-decoration: none;
+}
+
+/* 컴퓨터 사이즈 */
+#header_ul{
+	padding: 0;
+	margin: 0;
+	width: 700px;
+	height: 90px;
+	position: absolute;
+	left: 530px;
+	display: flex;
+	box-sizing: content-box;
+	justify-content: center;
+	list-style:none;
+}
+
+.header_li{
+	width: auto;
+	line-height: 90px;
+	font-size: 20px;
+	margin: 0 4.0%; 
+	font-weight: normal;
+}
+
+.search-input{
+	 width: 260px; 
+	 text-align:left;
+	 height: 30px;
+	 margin-right:none;
+	 border-bottom: 2px solid #4C4C4C;
+	 border-top: none;
+	 border-left: none;
+	 border-right: none;
+	 background-color: inherit;
+	 position: absolute;
+	 right: 220px;
+	 top: 30px;
+}							  
+
+#search-img{
+	cursor:pointer; 
+	width:20px; 
+	height:20px;
+	position: absolute;
+	top:35px;
+	right:230px;
+}	
+
+.header-btn{
+	width: 35px;
+	height: 35px;
+	position: absolute;
+	top: 32px;
+	right:70px;
+	cursor:pointer;
+	display: inline;
+}
+
+.header-log{
+	width: 35px;
+	height: 35px;
+}				  
+
+#tit1{
+	font-size: 17px;
+	margin-left: 10px;
+	font-weight: bold;
+	line-height: 43px;
+}
+#tit2{
+	margin-left: 5px;
+	padding: 0;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#logo img{
+	width: 50px;
+	height: 40px;
+	position: absolute;
+	left: 190px;
+}
+
+#mypage-img{
+   cursor:pointer; 
+   width:30px; 
+   height:30px;
+   position: absolute;
+   top:35px;
+   right:120px;
+}
+				 
+				 
+				

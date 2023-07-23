@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="q">
+	
+		<!-- Q&A 게시물 전체 조회 -->
+		<select id="qna_list" resultType="qna" parameterType="java.util.Map">
+			select * from (select rank() over(order by qna_ref desc) no, q.* from qna q)
+			where no between #{start} and #{end}
+		</select>
+		
+		<!-- Q&A 전체 게시물 갯수 조회 -->
+		<select id="qna_count" resultType="int">
+			select count(*) from qna
+		</select>
+		
+		<!-- idx에 해당하는 Q&A 게시물 한 건 조회하기 -->
+		<select id="qna_one" resultType="qna" parameterType="int">
+			select * from qna where qna_idx=#{qna_idx}
+		</select>
+		
+		<!-- 게시글 추가 -->
+		<insert id="qna_insert" parameterType="qna">
+			insert into qna values(
+				seq_qna_idx.nextVal,
+				#{member_idx},
+				#{name},
+				#{subject},
+				#{content},
+				#{pwd},
+				sysdate,
+				seq_qna_idx.currVal,
+				0,
+				0
+			)
+		</insert>
+		
+		<!-- Q&A 게시글 삭제 -->
+		<delete id="qna_delete" parameterType="qna">
+			delete from qna where qna_idx=#{qna_idx}
+		</delete>
+		
+		<!-- 댓글 작성을 위한 step증가 -->
+		<update id="qna_update_step" parameterType="qna">
+			update qna set qna_step = qna_step + 1
+			where qna_ref = #{qna_ref} and qna_step > #{qna_step}
+		</update>
+		
+		<!-- Q&A 댓글 달기 -->
+		<insert id="qna_reply" parameterType="qna">
+			insert into qna values (
+				seq_qna_idx.nextVal,
+				#{member_idx},
+				#{name},
+				#{subject},
+				#{content},
+				#{pwd},
+				sysdate,
+				#{qna_ref},
+				#{qna_depth},
+				#{qna_step}
+			)
+		</insert>
+		
+		<!-- 본인 QNA게시물 조회 -->
+		<select id="my_qna" resultType="qna" parameterType="java.util.Map">
+			select * from (select rank() over(order by qna_ref desc) no, q.* from qna q where q.qna_idx IN (SELECT q.QNA_IDX from qna q WHERE member_idx=#{vo}))
+			where no between #{start} and #{end}
+		</select>
+</mapper>
